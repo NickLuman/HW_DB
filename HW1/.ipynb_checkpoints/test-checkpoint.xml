@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db-schema name="Job">
+        <table name="Workman">
+                <schema-override dbms="sqlite" schema="Job">
+                </schema-override>
+                <columns>
+                        <column name="id"
+                                type="int"
+                                auto-increment="true" />
+                        <column name="surname"
+                                type="VARCHAR"
+                                length="50"
+                                allows-null="false"/>
+                        <column name="name"
+                                type="VARCHAR"
+                                length="50"
+                                allows-null="false" />    
+                        <column name="qualification"
+                                type="VARCHAR"
+                                length="50"/>
+                         <column name="experience"
+                                type="int"/>
+                         <column name="identification_key" 
+                                 type="VARCHAR"
+                                 length="50"
+                                 unique="true"/>
+                </columns>
+                <constraints>
+                        <primary-key name="pmk">
+                                <column-ref name="identification_key"/>
+                        </primary-key>
+                        <unique>
+                                <column-ref name="identification_key"/>
+                        </unique>
+                        <foreign-key name="fnk" references="Workplace">
+                                <column-ref name="id"/>
+                                <referenced-column name="place_id"/>
+                        </foreign-key>
+                </constraints>
+                <indexes>
+                        <index name="ind_id" unique="true">
+                                <column-ref name="surname"/>
+                                <column-ref name="name"/>
+                        </index>
+                </indexes>
+        </table>        
+</db-schema>
